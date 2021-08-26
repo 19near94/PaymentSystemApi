@@ -7,7 +7,7 @@ Adding unit test to the project to check if the conditions are met.
 
 For status property my assumption is that it has 3 value which is Success,Failed,Closed.
 
-Success - If the payment or calling the API is successful
+Success - If the payment or calling the API is successful.
 Failed - If the transaction to API is failed.
 Closed - If the success transaction is now posted to the system.
 
