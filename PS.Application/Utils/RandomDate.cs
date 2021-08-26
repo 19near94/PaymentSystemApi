@@ -7,6 +7,11 @@ namespace PS.Application.Utils
     public class RandomDate
     {
         private Random gen = new Random();
+
+        /// <summary>
+        /// Helper to get random date from 2020-1-1 onwards.
+        /// </summary>
+        /// <returns>The random generated date.</returns>
         public DateTime DateRandom()
         {
             DateTime start = new DateTime(2020, 1, 1);

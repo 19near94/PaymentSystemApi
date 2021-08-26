@@ -17,13 +17,21 @@ namespace PS.Application.Services
             AcctBalance acctBalance = new AcctBalance();
             List<AcctTransaction> acctTransactions = new List<AcctTransaction>();
             RandomEnumValues randomEnumValues = new RandomEnumValues();
-            for (int i = 0; i < 5; i++)
+            try
             {
-                AcctTransaction acctTransaction = new AcctTransaction();
-                acctTransaction.Amount = rand.Next(10000, 400000);// get random amount
-                acctTransaction.Date = randomDate.DateRandom();
-                acctTransaction.Status = randomEnumValues.RandomEnumValue<StatusEnum>().DisplayName();
-                acctTransactions.Add(acctTransaction);
+                for (int i = 0; i < 5; i++)
+                {
+                    AcctTransaction acctTransaction = new AcctTransaction();
+                    acctTransaction.Amount = rand.Next(10000, 400000);// get random amount
+                    acctTransaction.Date = randomDate.DateRandom(); // get random date
+                    acctTransaction.Status = randomEnumValues.RandomEnumValue<StatusEnum>().DisplayName();// get random enum
+                    acctTransactions.Add(acctTransaction);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
 
             acctBalance.AcctTransactions = acctTransactions.OrderByDescending(i => i.Date).ToList();
