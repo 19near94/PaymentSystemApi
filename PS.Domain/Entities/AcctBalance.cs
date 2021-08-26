@@ -8,6 +8,7 @@ namespace PS.Domain.Entities
     {
         public string Balance { get; set; } = "500,000.00";
 
-        public virtual ICollection<>
+        public virtual ICollection<AcctTransaction> AcctTransactions { get; set; }
+
     }
 }
