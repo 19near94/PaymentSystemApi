@@ -21,7 +21,7 @@ Failed - If the transaction to API is failed.
 
 Closed - If the success transaction is now posted to the system.
 
-I used JWT for API security.
+I used JWT for API security and for CI I used github actions.
 
 For you to see this in action.
 Clone my repository and run it to your local or deploy it IIS.
