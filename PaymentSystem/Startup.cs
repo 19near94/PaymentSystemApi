@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,11 +8,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using PS.Application.Services;
 using PS.Application.Services.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PaymentSystem
 {
@@ -60,7 +54,7 @@ namespace PaymentSystem
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseCors("EnableCORS");
 
@@ -74,7 +68,7 @@ namespace PaymentSystem
             app.UseRouting();
             
             app.UseAuthorization();
-            
+            loggerFactory.AddFile("Logs/mylog-{Date}.txt");
 
             app.UseEndpoints(endpoints =>
             {

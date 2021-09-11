@@ -1,16 +1,23 @@
-﻿using PS.Application.Services.Interface;
+﻿using Microsoft.Extensions.Logging;
+using PS.Application.Services.Interface;
 using PS.Application.Utils;
 using PS.Domain.Entities;
 using PS.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace PS.Application.Services
 {
     public class TransactionService : ITransaction
     {
+        private readonly ILogger _logger;
+
+        public TransactionService(ILogger logger)
+        {
+            _logger = logger;
+        }
+
         public AcctBalance GetAcctBalance()
         {
             Random rand = new Random();
@@ -18,6 +25,7 @@ namespace PS.Application.Services
             AcctBalance acctBalance = new AcctBalance();
             List<AcctTransaction> acctTransactions = new List<AcctTransaction>();
             RandomEnumValues randomEnumValues = new RandomEnumValues();
+
             try
             {
                 for (int i = 0; i < 5; i++)
@@ -31,8 +39,7 @@ namespace PS.Application.Services
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                _logger.LogError(ex.Message);
             }
 
             acctBalance.AcctTransactions = acctTransactions.OrderByDescending(i => i.Date).ToList();
