@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Logging;
+using Moq;
 using PS.Application.Services;
 using System;
 using System.Linq;
@@ -7,12 +9,15 @@ namespace PaymentSystemUnitTest
 {
     public class PaymentTest
     {
+        private readonly Mock<ILogger> _logger = new Mock<ILogger>();
+
+        
         #region Positive
         [Fact]
         public void BalanceNotNull()
         {
             //Arr
-            TransactionService transactionService = new TransactionService();
+            TransactionService transactionService = new TransactionService(_logger.Object);
 
             //Act
             var result = transactionService.GetAcctBalance();
@@ -26,7 +31,7 @@ namespace PaymentSystemUnitTest
         {
             //Arr
             int expected = 5;
-            TransactionService transactionService = new TransactionService();
+            TransactionService transactionService = new TransactionService(_logger.Object);
 
             //Act
             var result = transactionService.GetAcctBalance();
@@ -40,7 +45,7 @@ namespace PaymentSystemUnitTest
         {
             //Arr
             int expected = 10000;
-            TransactionService transactionService = new TransactionService();
+            TransactionService transactionService = new TransactionService(_logger.Object);
 
             //Act
             var result = transactionService.GetAcctBalance();
@@ -54,7 +59,7 @@ namespace PaymentSystemUnitTest
         {
             //Arr
             int expected = DateTime.UtcNow.Year;
-            TransactionService transactionService = new TransactionService();
+            TransactionService transactionService = new TransactionService(_logger.Object);
 
             //Act
             var result = transactionService.GetAcctBalance();
@@ -69,7 +74,7 @@ namespace PaymentSystemUnitTest
         public void BalanceNull()
         {
             //Arr
-            TransactionService transactionService = new TransactionService();
+            TransactionService transactionService = new TransactionService(_logger.Object);
 
             //Act
             var result = transactionService.GetAcctBalance();
@@ -83,7 +88,7 @@ namespace PaymentSystemUnitTest
         {
             //Arr
             int expected = 3;
-            TransactionService transactionService = new TransactionService();
+            TransactionService transactionService = new TransactionService(_logger.Object);
 
             //Act
             var result = transactionService.GetAcctBalance();
@@ -97,7 +102,7 @@ namespace PaymentSystemUnitTest
         {
             //Arr
             int expected = 90000;
-            TransactionService transactionService = new TransactionService();
+            TransactionService transactionService = new TransactionService(_logger.Object);
 
             //Act
             var result = transactionService.GetAcctBalance();
@@ -111,7 +116,7 @@ namespace PaymentSystemUnitTest
         {
             //Arr
             int expected = DateTime.UtcNow.AddYears(-2).Year;
-            TransactionService transactionService = new TransactionService();
+            TransactionService transactionService = new TransactionService(_logger.Object);
 
             //Act
             var result = transactionService.GetAcctBalance();
