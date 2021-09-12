@@ -13,11 +13,6 @@ namespace PS.Application.Services
     {
         private readonly ILogger _logger;
 
-        public TransactionService(ILogger logger)
-        {
-            _logger = logger;
-        }
-
         public AcctBalance GetAcctBalance()
         {
             Random rand = new Random();
