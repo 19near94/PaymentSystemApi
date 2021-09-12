@@ -2,7 +2,7 @@
 
 Demo for Payment System Api
 
-The Architecture that I used is clean architecture which have Web layer, Domain layer, Application.
+The Architecture have Web layer, Domain layer, Application.
 Domain Layer - It is where my entities and repository reside.
 Application Layer - It is where my business logic reside more like in service form.
 Web layer - It is where my endpoint.
