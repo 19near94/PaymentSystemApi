@@ -1,52 +1,56 @@
 ﻿using Microsoft.AspNetCore.Http;
-using PaymentSystem.Middleware.Helpers;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using PS.Domain.Entities;
 using System;
-using System.Collections.Generic;
 using System.Net;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace PaymentSystem.Middleware
 {
     public class ErrorHandlerMiddleware
     {
-        private readonly RequestDelegate _next;
-
-        public ErrorHandlerMiddleware(RequestDelegate next)
+        public RequestDelegate requestDelegate;
+        public ErrorHandlerMiddleware(RequestDelegate requestDelegate)
         {
-            _next = next;
+            this.requestDelegate = requestDelegate;
         }
-
-        public async Task Invoke(HttpContext context)
+        public async Task Invoke(HttpContext context, ILogger<ErrorHandlerMiddleware> logger)
         {
             try
             {
-                await _next(context);
+                await requestDelegate(context);
             }
-            catch (Exception error)
+            catch (Exception ex)
             {
-                var response = context.Response;
-                response.ContentType = "application/json";
-
-                switch (error)
-                {
-                    case AppException e:
-                        // custom application error
-                        response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        break;
-                    case KeyNotFoundException e:
-                        // not found error
-                        response.StatusCode = (int)HttpStatusCode.NotFound;
-                        break;
-                    default:
-                        // unhandled error
-                        response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                        break;
-                }
-
-                var result = JsonSerializer.Serialize(new { message = error?.Message });
-                await response.WriteAsync(result);
+                await HandleException(context, ex, logger);
             }
+        }
+        private static Task HandleException(HttpContext context, Exception ex, ILogger<ErrorHandlerMiddleware> logger)
+        {
+            logger.LogError(ex.ToString());
+            var errorMessageObject = new Error { Message = ex.Message, Code = "GE" };
+            var statusCode = (int)HttpStatusCode.InternalServerError;
+            switch (ex)
+            {
+                case InvalidAccountException e:
+                    errorMessageObject.Code = "M001";
+                    statusCode = (int)HttpStatusCode.InternalServerError;
+                    break;
+
+                case ArgumentNullException e:
+                    errorMessageObject.Code = "M002";
+                    statusCode = (int)HttpStatusCode.BadRequest;
+                    break;
+
+            }
+
+            var errorMessage = JsonConvert.SerializeObject(errorMessageObject);
+
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = statusCode;
+
+            return context.Response.WriteAsync(errorMessage);
         }
     }
 }

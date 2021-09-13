@@ -29,11 +29,12 @@ namespace PS.Application.Services
             AcctBalance acctBalance = new AcctBalance();
             try
             {
-                acctBalance = await  _acctDbContext.Accounts.AsNoTracking().Include(i => i.AcctTransactions).FirstOrDefaultAsync();
+                acctBalance = await  _acctDbContext.Accounts.AsNoTracking().Include(i => i.AcctTransactions).OrderByDescending(t => t.AcctTransactions.Select(d => d.Date)).FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
+                throw new InvalidAccountException("Error Getting balance");
             }
             return acctBalance;
         }

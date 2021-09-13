@@ -1,3 +1,0 @@
-2021-09-12T12:39:12.5589262+08:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
-2021-09-12T12:39:12.5662198+08:00  [INF] Hosting environment: "Development" (c3307c92)
-2021-09-12T12:39:12.5674682+08:00  [INF] Content root path: "C:\Users\Jan\source\repos\PS- clone\PaymentSystemApi\PaymentSystem" (b5d60022)
