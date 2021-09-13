@@ -29,7 +29,7 @@ namespace PS.Application.Services
             AcctBalance acctBalance = new AcctBalance();
             try
             {
-                var accountTransaction = await  _acctDbContext.AccountTransaction.AsNoTracking().Include(a => a.AcctBalance)
+                var accountTransaction = await  _acctDbContext.AccountTransaction.AsNoTracking()
                     .OrderByDescending(i => i.Date)
                     .ToListAsync();
 
