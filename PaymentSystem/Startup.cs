@@ -1,20 +1,17 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using PaymentSystem.Middleware;
 using PS.Application.Services;
 using PS.Application.Services.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using PS.EntityFrameworkCore;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PaymentSystem
 {
@@ -57,10 +54,14 @@ namespace PaymentSystem
             services.AddControllers();
             services.AddTransient<ITransaction, TransactionService>();
             services.AddTransient<ITokenService, TokenService>();
+            var logger = services.BuildServiceProvider().GetService<ILogger<TransactionService>>();
+            services.AddSingleton(typeof(ILogger), logger);
+
+            services.AddDbContext<AcctDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Dbconn")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseCors("EnableCORS");
 
@@ -74,8 +75,12 @@ namespace PaymentSystem
             app.UseRouting();
             
             app.UseAuthorization();
-            
 
+            //log File
+            loggerFactory.AddFile("Logs/mylog-{Date}.txt");
+
+            // global error handler
+            app.UseMiddleware<ErrorHandlerMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

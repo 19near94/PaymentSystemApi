@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentSystem", "PaymentSystem\PaymentSystem.csproj", "{7C2F4B36-8589-42FF-89B3-D997B3CEFEED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentSystem", "PaymentSystem\PaymentSystem.csproj", "{7C2F4B36-8589-42FF-89B3-D997B3CEFEED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentSystemUnitTest", "PaymentSystemUnitTest\PaymentSystemUnitTest.csproj", "{DABA8E79-6D07-456B-B7A5-16229C0BC6FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentSystemUnitTest", "PaymentSystemUnitTest\PaymentSystemUnitTest.csproj", "{DABA8E79-6D07-456B-B7A5-16229C0BC6FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.Domain", "PS.Domain\PS.Domain.csproj", "{6A3F4DA5-4407-46AF-A3BD-2AC4181E3EBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.Domain", "PS.Domain\PS.Domain.csproj", "{6A3F4DA5-4407-46AF-A3BD-2AC4181E3EBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.Application", "PS.Application\PS.Application.csproj", "{E5AB30A9-9FC3-4FB7-835A-E1251850977F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.Application", "PS.Application\PS.Application.csproj", "{E5AB30A9-9FC3-4FB7-835A-E1251850977F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.EntityFrameworkCore", "PS.EntityFrameworkCore\PS.EntityFrameworkCore.csproj", "{85C00076-61C1-4B4B-AA38-A3292EFECAF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{E5AB30A9-9FC3-4FB7-835A-E1251850977F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5AB30A9-9FC3-4FB7-835A-E1251850977F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5AB30A9-9FC3-4FB7-835A-E1251850977F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85C00076-61C1-4B4B-AA38-A3292EFECAF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85C00076-61C1-4B4B-AA38-A3292EFECAF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85C00076-61C1-4B4B-AA38-A3292EFECAF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85C00076-61C1-4B4B-AA38-A3292EFECAF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
