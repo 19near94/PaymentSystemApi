@@ -26,7 +26,7 @@ Closed - If the success transaction is now posted to the system.
 I used JWT for API security and for CI I used github actions.
 
 For authentication
-username = test123
+username = test123 and 
 password = test123
 
 
