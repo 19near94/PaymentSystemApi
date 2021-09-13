@@ -36,7 +36,7 @@ namespace PaymentSystemUnitTest
             var acctTrans = Enumerable.Range(1, 5)
                 .Select(i => new AcctTransaction { Id = Guid.NewGuid().ToString(), AccountId = id, Amount = rand.Next(10000, 400000), Date = DateTime.UtcNow }
                             );
-            var acctBalances = Enumerable.Range(1, 5)
+            var acctBalances = Enumerable.Range(1, 1)
                 .Select(i => new AcctBalance { Id = Guid.NewGuid().ToString(), AcctTransactions = acctTrans.ToList(), Balance="500,000.00" });
             context.Accounts.AddRange(acctBalances);
             int changed = context.SaveChanges();
