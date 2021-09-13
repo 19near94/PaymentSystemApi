@@ -33,12 +33,16 @@ password = test123
 For you to see this in action.
 Clone my repository 
 ,Open it in Visual studio 2019
+,Run Update-Database to Package Manager Console to have the local db tables
 and choose iis express and run it to your local.
 
 Run the below url's in postman
 https://localhost:44367/api/Token?Username=test123&Password=test123 - To authenticate and copy the generated access token.
+
 https://localhost:44367/api/Account - Paste the access token to the authorization Tab and choose bearer token. Post method to insert initial value to database.
+
 https://localhost:44367/api/Account - get the account balance and transaction list
+
 
 
 If you have any suggestion for the improvement please let me know.
