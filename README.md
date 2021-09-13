@@ -3,9 +3,11 @@
 Demo for Payment System Api
 
 The Architecture have Web layer, Domain layer, Application.
-Domain Layer - It is where my entities and repository reside.
-Application Layer - It is where my business logic reside more like in service form.
-Web layer - It is where my endpoint.
+
+PS.Domain Layer - It is where my entities and repository reside.
+PS.Application Layer - It is where my business logic reside more like in service form.
+PS.EntiyFramework core - This where the dbcontext code.
+PaymentSystem layer - It is where my endpoint.
 
 What I do is.
 
@@ -22,6 +24,11 @@ Failed - If the transaction to API is failed.
 Closed - If the success transaction is now posted to the system.
 
 I used JWT for API security and for CI I used github actions.
+
+For authentication
+username = test123
+password = test123
+
 
 For you to see this in action.
 Clone my repository and run it to your local or deploy it IIS.
