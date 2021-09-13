@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.15">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.12.2" />
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.12.2" />
@@ -12,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PS.Domain\PS.Domain.csproj" />
+    <ProjectReference Include="..\PS.EntityFrameworkCore\PS.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
 </Project>

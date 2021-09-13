@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PaymentSystem.Middleware.Helpers;
 using PS.Application.Services.Interface;
 using PS.Domain.Entities;
+using System.Threading.Tasks;
 
 namespace PaymentSystem.Controllers
 {
@@ -18,9 +18,15 @@ namespace PaymentSystem.Controllers
         }
 
         [HttpGet]
-        public AcctBalance GetAcctBalance()
+        public async Task<AcctBalance> GetAcctBalance()
         {
-            return _transaction.GetAcctBalance();
+            return  await _transaction.GetAcctBalance();
+        }
+
+        [HttpPost]
+        public async Task<bool> Post()
+        {
+            return await _transaction.InsertInialData();
         }
     }
 }

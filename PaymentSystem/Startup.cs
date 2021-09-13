@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -9,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using PaymentSystem.Middleware;
 using PS.Application.Services;
 using PS.Application.Services.Interface;
+using PS.EntityFrameworkCore;
 using System.Text;
 
 namespace PaymentSystem
@@ -54,6 +56,8 @@ namespace PaymentSystem
             services.AddTransient<ITokenService, TokenService>();
             var logger = services.BuildServiceProvider().GetService<ILogger<TransactionService>>();
             services.AddSingleton(typeof(ILogger), logger);
+
+            services.AddDbContext<AcctDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Dbconn")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

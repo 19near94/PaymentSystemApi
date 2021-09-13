@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace PS.Application.Services.Interface
 {
@@ -11,6 +12,7 @@ namespace PS.Application.Services.Interface
         /// Get the transaction details
         /// </summary>
         /// <returns>The Account details and its value</returns>
-        AcctBalance GetAcctBalance();
+        Task<AcctBalance> GetAcctBalance();
+        Task<bool> InsertInialData();
     }
 }
