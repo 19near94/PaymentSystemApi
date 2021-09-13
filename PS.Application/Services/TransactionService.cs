@@ -29,7 +29,12 @@ namespace PS.Application.Services
             AcctBalance acctBalance = new AcctBalance();
             try
             {
-                acctBalance = await  _acctDbContext.Accounts.AsNoTracking().Include(i => i.AcctTransactions).FirstOrDefaultAsync();
+                var accountTransaction = await  _acctDbContext.AccountTransaction.AsNoTracking().Include(a => a.AcctBalance)
+                    .OrderByDescending(i => i.Date)
+                    .ToListAsync();
+
+                acctBalance = await _acctDbContext.Accounts.AsNoTracking().FirstOrDefaultAsync();
+                acctBalance.AcctTransactions = accountTransaction;
             }
             catch (Exception ex)
             {
