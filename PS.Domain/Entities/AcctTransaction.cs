@@ -22,5 +22,7 @@ namespace PS.Domain.Entities
         [Column("status")]
         public string Status { get; set; }
 
+        public virtual AcctBalance AcctBalance { get; set; }
+
     }
 }
